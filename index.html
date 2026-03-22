@@ -1,60 +1,362 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的个人网页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniconda学习网站 - 面向非计算机专业研究生</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: "Microsoft YaHei", sans-serif;
-            max-width: 800px;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0 20px;
         }
-        .header {
-            text-align: center;
-            background-color: #24292e;
+
+        /* 导航栏 */
+        nav {
+            background-color: #2c3e50;
             color: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .content {
-            background-color: white;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .footer {
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 首页横幅 */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 4rem 0;
             text-align: center;
-            margin-top: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: #3498db;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 功能模块 */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-card h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
             color: #666;
+        }
+
+        /* 课程预览 */
+        .courses-preview {
+            background-color: #ecf0f1;
+            padding: 4rem 0;
+        }
+
+        .courses-preview h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-content h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .course-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .course-link:hover {
+            color: #2980b9;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid,
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>欢迎来到我的个人网页！</h1>
-        <p>这是我用GitHub Pages创建的第一个网页</p>
-    </div>
-    
-    <div class="content">
-        <h2>关于我</h2>
-        <p>大家好，我是【你的姓名】，一名【你的专业】学生。</p>
-        
-        <h2>我的兴趣</h2>
-        <ul>
-            <li>人工智能</li>
-            <li>编程开发</li>
-            <li>阅读写作</li>
-        </ul>
-        
-        <h2>联系方式</h2>
-        <p>邮箱：你的邮箱@example.com</p>
-    </div>
-    
-    <div class="footer">
-        <p>&copy; 2024 我的个人网页 | Powered by GitHub Pages</p>
-    </div>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Miniconda学习网站</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="courses.html">课程内容</a></li>
+                <li><a href="projects.html">项目资源</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section class="hero">
+        <div class="container">
+            <h1>Miniconda学习平台</h1>
+            <p>专为非计算机专业研究生打造的Python与Miniconda学习资源</p>
+            <a href="courses.html" class="btn">开始学习</a>
+        </div>
+    </section>
+
+    <!-- 功能模块 -->
+    <section class="features">
+        <div class="container">
+            <h2>核心功能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>课程内容</h3>
+                    <p>系统讲授Python基础知识、数据结构和常用库，提供Miniconda环境搭建的详细教程，支持Windows、macOS和Linux系统。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>项目资源</h3>
+                    <p>精选Gitee平台上适合教学演示的经典Python项目，包含详细介绍、技术栈说明、部署步骤和教学应用场景分析。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>学习支持</h3>
+                    <p>提供常见问题解答、代码示例展示和实时部署演示，帮助非专业背景学生快速掌握Python和Miniconda使用技能。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程预览 -->
+    <section class="courses-preview">
+        <div class="container">
+            <h2>热门课程</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-image">🐍</div>
+                    <div class="course-content">
+                        <h3>Python基础知识</h3>
+                        <p>系统学习Python语法、数据类型、控制结构和函数等基础知识。</p>
+                        <a href="courses.html#python-basics" class="course-link">查看详情 →</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">⚙️</div>
+                    <div class="course-content">
+                        <h3>Miniconda环境搭建</h3>
+                        <p>详细讲解Miniconda在不同操作系统上的安装和配置方法。</p>
+                        <a href="courses.html#miniconda-install" class="course-link">查看详情 →</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">📊</div>
+                    <div class="course-content">
+                        <h3>数据科学常用库</h3>
+                        <p>介绍NumPy、Pandas、Matplotlib等数据科学常用库的使用方法。</p>
+                        <a href="courses.html#data-libraries" class="course-link">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Miniconda学习网站 | 面向非计算机专业研究生</p>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                nav.style.backgroundColor = '#2c3e50';
+            }
+        });
+    </script>
 </body>
 </html>

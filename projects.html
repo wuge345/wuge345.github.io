@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目资源 - Miniconda学习网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 页面内容 */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        /* 项目卡片 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: #3498db;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        /* 项目详情 */
+        .project-details {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .project-details h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-details h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-details p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .project-details ul,
+        .project-details ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .project-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 代码块 */
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* 部署步骤 */
+        .deploy-steps {
+            background-color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .deploy-steps h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-details {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Miniconda学习网站</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="courses.html">课程内容</a></li>
+                <li><a href="projects.html">项目资源</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面内容 -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-title">项目资源展示</h1>
+
+            <!-- 项目列表 -->
+            <div class="projects-grid">
+                <!-- 项目1 -->
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3>数据可视化仪表盘</h3>
+                        <p>基于Python和Dash构建的交互式数据可视化仪表盘，适合展示数据分析结果。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Dash</span>
+                            <span class="tag">Plotly</span>
+                            <span class="tag">数据可视化</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#project1" class="btn">查看详情</a>
+                            <a href="https://gitee.com/example/data-visualization-dashboard" target="_blank" class="btn btn-secondary">Gitee</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目2 -->
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3>简单Web应用</h3>
+                        <p>使用Flask框架构建的简单Web应用，包含用户登录、数据展示等功能。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">Web开发</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#project2" class="btn">查看详情</a>
+                            <a href="https://gitee.com/example/flask-web-app" target="_blank" class="btn btn-secondary">Gitee</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目3 -->
+                <div class="project-card">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3>机器学习入门项目</h3>
+                        <p>基于scikit-learn的机器学习入门项目，包含分类和回归示例。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">scikit-learn</span>
+                            <span class="tag">机器学习</span>
+                            <span class="tag">数据分析</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#project3" class="btn">查看详情</a>
+                            <a href="https://gitee.com/example/ml-basics" target="_blank" class="btn btn-secondary">Gitee</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目4 -->
+                <div class="project-card">
+                    <div class="project-image">📈</div>
+                    <div class="project-content">
+                        <h3>数据分析工具</h3>
+                        <p>使用Pandas和NumPy构建的数据分析工具，支持数据清洗和统计分析。</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">数据分析</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#project4" class="btn">查看详情</a>
+                            <a href="https://gitee.com/example/data-analysis-tool" target="_blank" class="btn btn-secondary">Gitee</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目详情 -->
+            <div class="project-details">
+                <div id="project1">
+                    <h2>数据可视化仪表盘</h2>
+                    
+                    <h3>项目介绍</h3>
+                    <p>这是一个基于Python和Dash框架构建的交互式数据可视化仪表盘，适合非计算机专业学生学习数据可视化技术。项目提供了直观的界面，用户可以通过拖拽、筛选等操作实时查看数据变化。</p>
+
+                    <h3>技术栈</h3>
+                    <ul>
+                        <li><strong>Python 3.9+</strong>：核心编程语言</li>
+                        <li><strong>Dash</strong>：构建交互式Web应用的框架</li>
+                        <li><strong>Plotly</strong>：创建交互式图表</li>
+                        <li><strong>Pandas</strong>：数据处理和分析</li>
+                        <li><strong>NumPy</strong>：数值计算</li>
+                    </ul>
+
+                    <h3>部署步骤</h3>
+                    <div class="deploy-steps">
+                        <h4>步骤1：创建环境</h4>
+                        <div class="code-block">
+conda create -n dashboard-env python=3.9
+conda activate dashboard-env
+                        </div>
+
+                        <h4>步骤2：安装依赖</h4>
+                        <div class="code-block">
+pip install dash pandas numpy plotly
+                        </div>
+
+                        <h4>步骤3：克隆项目</h4>
+                        <div class="code-block">
+git clone https://gitee.com/example/data-visualization-dashboard.git
+cd data-visualization-dashboard
+                        </div>
+
+                        <h4>步骤4：运行应用</h4>
+                        <div class="code-block">
+python app.py
+                        </div>
+
+                        <h4>步骤5：访问应用</h4>
+                        <p>打开浏览器访问 <code>http://localhost:8050</code></p>
+                    </div>
+
+                    <h3>教学应用场景</h3>
+                    <p>本项目适合作为数据可视化教学案例，学生可以：</p>
+                    <ul>
+                        <li>学习如何使用Dash构建交互式Web应用</li>
+                        <li>掌握数据可视化的基本原理和方法</li>
+                        <li>了解如何处理和展示不同类型的数据</li>
+                        <li>学习如何添加交互功能（如筛选、缩放、导出等）</li>
+                    </ul>
+                </div>
+
+                <div id="project2">
+                    <h2>简单Web应用</h2>
+                    
+                    <h3>项目介绍</h3>
+                    <p>这是一个使用Flask框架构建的简单Web应用，包含用户登录、数据展示和表单提交等功能。项目结构清晰，适合初学者学习Web开发基础知识。</p>
+
+                    <h3>技术栈</h3>
+                    <ul>
+                        <li><strong>Python 3.9+</strong>：核心编程语言</li>
+                        <li><strong>Flask</strong>：Web框架</li>
+                        <li><strong>HTML/CSS/JavaScript</strong>：前端技术</li>
+                        <li><strong>SQLite</strong>：轻量级数据库</li>
+                        <li><strong>WTForms</strong>：表单验证</li>
+                    </ul>
+
+                    <h3>部署步骤</h3>
+                    <div class="deploy-steps">
+                        <h4>步骤1：创建环境</h4>
+                        <div class="code-block">
+conda create -n flask-env python=3.9
+conda activate flask-env
+                        </div>
+
+                        <h4>步骤2：安装依赖</h4>
+                        <div class="code-block">
+pip install flask flask-wtf sqlite3
+                        </div>
+
+                        <h4>步骤3：克隆项目</h4>
+                        <div class="code-block">
+git clone https://gitee.com/example/flask-web-app.git
+cd flask-web-app
+                        </div>
+
+                        <h4>步骤4：初始化数据库</h4>
+                        <div class="code-block">
+python init_db.py
+                        </div>
+
+                        <h4>步骤5：运行应用</h4>
+                        <div class="code-block">
+python app.py
+                        </div>
+
+                        <h4>步骤6：访问应用</h4>
+                        <p>打开浏览器访问 <code>http://localhost:5000</code></p>
+                    </div>
+
+                    <h3>教学应用场景</h3>
+                    <p>本项目适合作为Web开发入门教学案例，学生可以：</p>
+                    <ul>
+                        <li>学习Flask框架的基本使用方法</li>
+                        <li>了解Web应用的基本架构</li>
+                        <li>掌握数据库操作的基本原理</li>
+                        <li>学习前端和后端的交互方式</li>
+                    </ul>
+                </div>
+
+                <div id="project3">
+                    <h2>机器学习入门项目</h2>
+                    
+                    <h3>项目介绍</h3>
+                    <p>这是一个基于scikit-learn的机器学习入门项目，包含分类和回归两个主要示例。项目使用经典数据集，帮助学生理解机器学习的基本概念和流程。</p>
+
+                    <h3>技术栈</h3>
+                    <ul>
+                        <li><strong>Python 3.9+</strong>：核心编程语言</li>
+                        <li><strong>scikit-learn</strong>：机器学习库</li>
+                        <li><strong>Pandas</strong>：数据处理</li>
+                        <li><strong>NumPy</strong>：数值计算</li>
+                        <li><strong>Matplotlib</strong>：数据可视化</li>
+                    </ul>
+
+                    <h3>部署步骤</h3>
+                    <div class="deploy-steps">
+                        <h4>步骤1：创建环境</h4>
+                        <div class="code-block">
+conda create -n ml-env python=3.9
+conda activate ml-env
+                        </div>
+
+                        <h4>步骤2：安装依赖</h4>
+                        <div class="code-block">
+pip install scikit-learn pandas numpy matplotlib
+                        </div>
+
+                        <h4>步骤3：克隆项目</h4>
+                        <div class="code-block">
+git clone https://gitee.com/example/ml-basics.git
+cd ml-basics
+                        </div>
+
+                        <h4>步骤4：运行示例</h4>
+                        <div class="code-block">
+# 运行分类示例
+python classification_example.py
+
+# 运行回归示例
+python regression_example.py
+                        </div>
+                    </div>
+
+                    <h3>教学应用场景</h3>
+                    <p>本项目适合作为机器学习入门教学案例，学生可以：</p>
+                    <ul>
+                        <li>学习机器学习的基本概念（特征、标签、训练集、测试集等）</li>
+                        <li>了解分类和回归算法的基本原理</li>
+                        <li>掌握模型评估的方法</li>
+                        <li>学习如何使用scikit-learn库构建机器学习模型</li>
+                    </ul>
+                </div>
+
+                <div id="project4">
+                    <h2>数据分析工具</h2>
+                    
+                    <h3>项目介绍</h3>
+                    <p>这是一个使用Pandas和NumPy构建的数据分析工具，支持数据清洗、统计分析和可视化。项目提供了简单的命令行界面，适合非专业背景学生学习数据分析技术。</p>
+
+                    <h3>技术栈</h3>
+                    <ul>
+                        <li><strong>Python 3.9+</strong>：核心编程语言</li>
+                        <li><strong>Pandas</strong>：数据处理和分析</li>
+                        <li><strong>NumPy</strong>：数值计算</li>
+                        <li><strong>Matplotlib</strong>：数据可视化</li>
+                        <li><strong>Seaborn</strong>：统计可视化</li>
+                    </ul>
+
+                    <h3>部署步骤</h3>
+                    <div class="deploy-steps">
+                        <h4>步骤1：创建环境</h4>
+                        <div class="code-block">
+conda create -n data-analysis-env python=3.9
+conda activate data-analysis-env
+                        </div>
+
+                        <h4>步骤2：安装依赖</h4>
+                        <div class="code-block">
+pip install pandas numpy matplotlib seaborn
+                        </div>
+
+                        <h4>步骤3：克隆项目</h4>
+                        <div class="code-block">
+git clone https://gitee.com/example/data-analysis-tool.git
+cd data-analysis-tool
+                        </div>
+
+                        <h4>步骤4：运行工具</h4>
+                        <div class="code-block">
+python data_analysis_tool.py
+                        </div>
+                    </div>
+
+                    <h3>教学应用场景</h3>
+                    <p>本项目适合作为数据分析教学案例，学生可以：</p>
+                    <ul>
+                        <li>学习数据清洗和预处理的方法</li>
+                        <li>掌握基本的统计分析技术</li>
+                        <li>了解数据可视化的基本原理</li>
+                        <li>学习如何使用Pandas和NumPy进行数据分析</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Miniconda学习网站 | 面向非计算机专业研究生</p>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                nav.style.backgroundColor = '#2c3e50';
+            }
+        });
+    </script>
+</body>
+</html>

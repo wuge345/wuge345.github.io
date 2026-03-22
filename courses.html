@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程内容 - Miniconda学习网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 页面内容 */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        /* 章节导航 */
+        .chapter-nav {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chapter-nav h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-nav ul {
+            list-style: none;
+        }
+
+        .chapter-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-nav a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .chapter-nav a:hover {
+            color: #3498db;
+            background-color: #f8f9fa;
+        }
+
+        /* 课程内容 */
+        .course-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .section ul,
+        .section ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 代码块 */
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* 安装步骤 */
+        .install-steps {
+            background-color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .install-steps h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* 按钮 */
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Miniconda学习网站</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="courses.html">课程内容</a></li>
+                <li><a href="projects.html">项目资源</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面内容 -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-title">课程内容</h1>
+
+            <!-- 章节导航 -->
+            <div class="chapter-nav">
+                <h3>章节导航</h3>
+                <ul>
+                    <li><a href="#python-basics">Python基础知识</a></li>
+                    <li><a href="#miniconda-install">Miniconda环境搭建</a></li>
+                    <li><a href="#data-libraries">数据科学常用库</a></li>
+                </ul>
+            </div>
+
+            <!-- Python基础知识 -->
+            <div class="course-content">
+                <div class="section" id="python-basics">
+                    <h2>Python基础知识</h2>
+                    
+                    <h3>1.1 Python简介</h3>
+                    <p>Python是一种高级、解释型、面向对象的编程语言，具有简洁的语法和强大的功能。它广泛应用于数据分析、人工智能、Web开发等领域。</p>
+
+                    <h3>1.2 安装Python</h3>
+                    <p>推荐使用Miniconda来管理Python环境，这样可以避免版本冲突问题。</p>
+
+                    <h3>1.3 基本语法</h3>
+                    <h4>变量和数据类型</h4>
+                    <div class="code-block">
+# 变量定义
+name = "张三"
+age = 25
+height = 1.75
+is_student = True
+
+# 打印输出
+print("姓名:", name)
+print("年龄:", age)
+                    </div>
+
+                    <h4>数据类型</h4>
+                    <table>
+                        <tr>
+                            <th>类型</th>
+                            <th>描述</th>
+                            <th>示例</th>
+                        </tr>
+                        <tr>
+                            <td>int</td>
+                            <td>整数</td>
+                            <td>1, 2, 3</td>
+                        </tr>
+                        <tr>
+                            <td>float</td>
+                            <td>浮点数</td>
+                            <td>1.5, 3.14</td>
+                        </tr>
+                        <tr>
+                            <td>str</td>
+                            <td>字符串</td>
+                            <td>"hello", 'world'</td>
+                        </tr>
+                        <tr>
+                            <td>bool</td>
+                            <td>布尔值</td>
+                            <td>True, False</td>
+                        </tr>
+                        <tr>
+                            <td>list</td>
+                            <td>列表</td>
+                            <td>[1, 2, 3]</td>
+                        </tr>
+                        <tr>
+                            <td>dict</td>
+                            <td>字典</td>
+                            <td>{"name": "张三"}</td>
+                        </tr>
+                    </table>
+
+                    <h3>1.4 控制结构</h3>
+                    <h4>条件语句</h4>
+                    <div class="code-block">
+age = 18
+if age >= 18:
+    print("成年人")
+elif age >= 13:
+    print("青少年")
+else:
+    print("儿童")
+                    </div>
+
+                    <h4>循环语句</h4>
+                    <div class="code-block">
+# for循环
+for i in range(1, 6):
+    print(i)
+
+# while循环
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+                    </div>
+
+                    <h3>1.5 函数</h3>
+                    <div class="code-block">
+def greet(name):
+    """问候函数"""
+    return f"你好，{name}！"
+
+result = greet("张三")
+print(result)
+                    </div>
+                </div>
+
+                <!-- Miniconda环境搭建 -->
+                <div class="section" id="miniconda-install">
+                    <h2>Miniconda环境搭建</h2>
+                    
+                    <h3>2.1 什么是Miniconda</h3>
+                    <p>Miniconda是一个轻量级的Anaconda版本，只包含conda和Python。它允许用户创建和管理多个独立的Python环境，每个环境可以安装不同版本的包。</p>
+
+                    <h3>2.2 Windows系统安装</h3>
+                    <div class="install-steps">
+                        <h4>安装步骤：</h4>
+                        <ol>
+                            <li>访问<a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Miniconda官方网站</a></li>
+                            <li>下载Windows版本的安装包（推荐使用Python 3.9或更高版本）</li>
+                            <li>运行安装程序，按照提示进行安装</li>
+                            <li>勾选"Add Miniconda3 to my PATH environment variable"选项</li>
+                            <li>完成安装后，打开命令提示符或PowerShell</li>
+                            <li>输入<code>conda --version</code>验证安装成功</li>
+                        </ol>
+                    </div>
+
+                    <h3>2.3 macOS系统安装</h3>
+                    <div class="install-steps">
+                        <h4>安装步骤：</h4>
+                        <ol>
+                            <li>访问<a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Miniconda官方网站</a></li>
+                            <li>下载macOS版本的安装包</li>
+                            <li>打开终端，进入下载目录</li>
+                            <li>运行安装脚本：<code>bash Miniconda3-latest-MacOSX-x86_64.sh</code></li>
+                            <li>按照提示进行安装</li>
+                            <li>重启终端，输入<code>conda --version</code>验证安装成功</li>
+                        </ol>
+                    </div>
+
+                    <h3>2.4 Linux系统安装</h3>
+                    <div class="install-steps">
+                        <h4>安装步骤：</h4>
+                        <ol>
+                            <li>访问<a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Miniconda官方网站</a></li>
+                            <li>下载Linux版本的安装包</li>
+                            <li>打开终端，进入下载目录</li>
+                            <li>运行安装脚本：<code>bash Miniconda3-latest-Linux-x86_64.sh</code></li>
+                            <li>按照提示进行安装</li>
+                            <li>重启终端，输入<code>conda --version</code>验证安装成功</li>
+                        </ol>
+                    </div>
+
+                    <h3>2.5 环境管理</h3>
+                    <div class="code-block">
+# 创建新环境
+conda create -n myenv python=3.9
+
+# 激活环境
+conda activate myenv  # Windows
+source activate myenv  # macOS/Linux
+
+# 安装包
+conda install numpy pandas matplotlib
+
+# 列出已安装的包
+conda list
+
+# 导出环境
+conda env export > environment.yml
+
+# 删除环境
+conda env remove -n myenv
+                    </div>
+                </div>
+
+                <!-- 数据科学常用库 -->
+                <div class="section" id="data-libraries">
+                    <h2>数据科学常用库</h2>
+                    
+                    <h3>3.1 NumPy</h3>
+                    <p>NumPy是Python中用于科学计算的核心库，提供了高性能的数组对象和数学函数。</p>
+                    <div class="code-block">
+import numpy as np
+
+# 创建数组
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)
+
+# 数组运算
+result = arr * 2
+print(result)
+
+# 矩阵运算
+matrix1 = np.array([[1, 2], [3, 4]])
+matrix2 = np.array([[5, 6], [7, 8]])
+product = np.dot(matrix1, matrix2)
+print(product)
+                    </div>
+
+                    <h3>3.2 Pandas</h3>
+                    <p>Pandas是用于数据处理和分析的强大库，提供了DataFrame数据结构。</p>
+                    <div class="code-block">
+import pandas as pd
+
+# 创建DataFrame
+data = {
+    '姓名': ['张三', '李四', '王五'],
+    '年龄': [25, 28, 30],
+    '成绩': [85, 92, 78]
+}
+df = pd.DataFrame(data)
+print(df)
+
+# 数据查询
+print(df[df['成绩'] > 80])
+
+# 数据统计
+print(df.describe())
+                    </div>
+
+                    <h3>3.3 Matplotlib</h3>
+                    <p>Matplotlib是Python中最常用的绘图库，可以创建各种类型的图表。</p>
+                    <div class="code-block">
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 生成数据
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# 创建图表
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, label='sin(x)', color='blue', linewidth=2)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('正弦函数图像')
+plt.legend()
+plt.grid(True)
+plt.show()
+                    </div>
+
+                    <h3>3.4 安装常用库</h3>
+                    <div class="code-block">
+# 安装单个库
+conda install numpy
+
+# 安装多个库
+conda install numpy pandas matplotlib scikit-learn
+
+# 使用pip安装
+pip install requests
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Miniconda学习网站 | 面向非计算机专业研究生</p>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                nav.style.backgroundColor = '#2c3e50';
+            }
+        });
+    </script>
+</body>
+</html>

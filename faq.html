@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见问题 - Miniconda学习网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 页面内容 */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        /* FAQ容器 */
+        .faq-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* FAQ项目 */
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* FAQ问题 */
+        .faq-question {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #2980b9;
+        }
+
+        .faq-question.active {
+            background-color: #2980b9;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+
+        /* FAQ答案 */
+        .faq-answer {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 0 0 5px 5px;
+            margin-top: -5px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .faq-answer ul,
+        .faq-answer ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 代码块 */
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* 提示框 */
+        .tip {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .faq-container {
+                padding: 1rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .faq-answer {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Miniconda学习网站</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="courses.html">课程内容</a></li>
+                <li><a href="projects.html">项目资源</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面内容 -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-title">常见问题解答</h1>
+
+            <!-- FAQ容器 -->
+            <div class="faq-container">
+                <!-- FAQ项目1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何安装Miniconda？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>安装Miniconda的步骤如下：</p>
+                        <ol>
+                            <li>访问<a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Miniconda官方网站</a></li>
+                            <li>根据你的操作系统（Windows、macOS、Linux）下载对应的安装包</li>
+                            <li>运行安装程序，按照提示进行安装</li>
+                            <li>安装完成后，打开终端或命令提示符，输入<code>conda --version</code>验证安装成功</li>
+                        </ol>
+                        <div class="tip">
+                            <strong>提示：</strong>安装时建议勾选"Add Miniconda3 to my PATH environment variable"选项，这样可以在任意位置使用conda命令。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何创建和管理Python环境？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>使用conda创建和管理Python环境的命令如下：</p>
+                        <div class="code-block">
+# 创建新环境
+conda create -n myenv python=3.9
+
+# 激活环境
+conda activate myenv  # Windows
+source activate myenv  # macOS/Linux
+
+# 列出所有环境
+conda env list
+
+# 删除环境
+conda env remove -n myenv
+
+# 导出环境
+conda env export > environment.yml
+
+# 从环境文件创建环境
+conda env create -f environment.yml
+                        </div>
+                        <div class="tip">
+                            <strong>提示：</strong>建议为每个项目创建独立的环境，避免包版本冲突。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何安装Python包？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>安装Python包有两种常用方法：</p>
+                        <h4>1. 使用conda安装（推荐）</h4>
+                        <div class="code-block">
+# 安装单个包
+conda install numpy
+
+# 安装多个包
+conda install numpy pandas matplotlib
+
+# 指定版本安装
+conda install numpy=1.21.0
+                        </div>
+                        <h4>2. 使用pip安装</h4>
+                        <div class="code-block">
+# 安装单个包
+pip install numpy
+
+# 安装多个包
+pip install numpy pandas matplotlib
+
+# 指定版本安装
+pip install numpy==1.21.0
+                        </div>
+                        <div class="tip">
+                            <strong>提示：</strong>优先使用conda安装包，因为conda可以更好地处理依赖关系。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何解决"conda command not found"错误？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>出现"conda command not found"错误通常是因为conda没有添加到系统环境变量中。解决方法：</p>
+                        <h4>Windows系统：</h4>
+                        <ol>
+                            <li>重新运行Miniconda安装程序，确保勾选"Add Miniconda3 to my PATH environment variable"</li>
+                            <li>或者手动添加环境变量：
+                                <ul>
+                                    <li>右键"此电脑" → "属性" → "高级系统设置" → "环境变量"</li>
+                                    <li>在"系统变量"中找到"Path"，点击"编辑"</li>
+                                    <li>添加Miniconda的Scripts目录（通常是C:\Users\你的用户名\miniconda3\Scripts）</li>
+                                </ul>
+                            </li>
+                            <li>重启命令提示符或PowerShell</li>
+                        </ol>
+                        <h4>macOS/Linux系统：</h4>
+                        <div class="code-block">
+# 在终端中运行以下命令
+echo "source ~/miniconda3/bin/activate" >> ~/.bashrc  # bash用户
+echo "source ~/miniconda3/bin/activate" >> ~/.zshrc   # zsh用户
+source ~/.bashrc  # 或 source ~/.zshrc
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何更新conda和Python包？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>更新conda和Python包的命令如下：</p>
+                        <div class="code-block">
+# 更新conda本身
+conda update conda
+
+# 更新所有包
+conda update --all
+
+# 更新指定包
+conda update numpy pandas
+
+# 使用pip更新包
+pip install --upgrade numpy
+                        </div>
+                        <div class="tip">
+                            <strong>提示：</strong>定期更新conda和包可以获得最新的功能和安全修复。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目6 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何在Jupyter Notebook中使用conda环境？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>在Jupyter Notebook中使用conda环境的步骤：</p>
+                        <ol>
+                            <li>激活你的conda环境：<code>conda activate myenv</code></li>
+                            <li>安装ipykernel：<code>conda install ipykernel</code></li>
+                            <li>将环境添加到Jupyter：<code>python -m ipykernel install --user --name=myenv</code></li>
+                            <li>启动Jupyter Notebook：<code>jupyter notebook</code></li>
+                            <li>在新建Notebook时选择你的环境作为内核</li>
+                        </ol>
+                        <div class="tip">
+                            <strong>提示：</strong>如果要删除内核，可以使用<code>jupyter kernelspec uninstall myenv</code>命令。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目7 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何解决包安装失败的问题？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>包安装失败的常见原因和解决方法：</p>
+                        <ul>
+                            <li><strong>网络问题：</strong>检查网络连接，或者使用国内镜像源
+                                <div class="code-block">
+# 添加国内镜像源
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2/
+conda config --set show_channel_urls yes
+                                </div>
+                            </li>
+                            <li><strong>版本冲突：</strong>创建新的环境，或者指定兼容的包版本</li>
+                            <li><strong>权限问题：</strong>使用管理员权限运行终端/命令提示符</li>
+                            <li><strong>缓存问题：</strong>清除conda缓存
+                                <div class="code-block">
+conda clean --all
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ项目8 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何学习Python编程？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>学习Python编程的建议：</p>
+                        <ol>
+                            <li><strong>掌握基础知识：</strong>学习Python语法、数据类型、控制结构等</li>
+                            <li><strong>实践项目：</strong>从简单的小项目开始，逐步提高难度</li>
+                            <li><strong>使用在线资源：</strong>
+                                <ul>
+                                    <li>Python官方文档：https://docs.python.org/</li>
+                                    <li>菜鸟教程：https://www.runoob.com/python/python-tutorial.html</li>
+                                    <li>Python教程网：https://www.python.org/about/gettingstarted/</li>
+                                </ul>
+                            </li>
+                            <li><strong>加入社区：</strong>参与Python相关的论坛、群组，向他人学习</li>
+                            <li><strong>阅读优秀代码：</strong>学习他人的代码风格和编程思路</li>
+                        </ol>
+                        <div class="tip">
+                            <strong>提示：</strong>编程是一门实践技能，多写代码才能真正掌握。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目9 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何选择适合的Python IDE？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>推荐的Python IDE：</p>
+                        <ul>
+                            <li><strong>PyCharm：</strong>功能强大，适合专业开发，有社区版（免费）和专业版</li>
+                            <li><strong>VS Code：</strong>轻量级，可扩展性强，配合Python插件使用</li>
+                            <li><strong>Jupyter Notebook：</strong>适合数据分析和教学，支持交互式编程</li>
+                            <li><strong>Spyder：</strong>适合科学计算，集成了很多科学计算库</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>提示：</strong>初学者可以从VS Code或Jupyter Notebook开始，逐步过渡到更专业的IDE。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ项目10 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何提高Python代码的运行效率？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>提高Python代码运行效率的方法：</p>
+                        <ul>
+                            <li><strong>使用合适的数据结构：</strong>列表适合随机访问，字典适合查找</li>
+                            <li><strong>避免循环：</strong>使用列表推导式、生成器表达式等替代显式循环</li>
+                            <li><strong>使用高效的库：</strong>NumPy、Pandas等库使用C实现，比纯Python代码快很多</li>
+                            <li><strong>减少函数调用：</strong>避免在循环中频繁调用函数</li>
+                            <li><strong>使用局部变量：</strong>局部变量的访问速度比全局变量快</li>
+                            <li><strong>使用内置函数：</strong>内置函数经过优化，执行效率高</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Miniconda学习网站 | 面向非计算机专业研究生</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ折叠功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                // 切换当前FAQ的状态
+                this.classList.toggle('active');
+                answer.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                nav.style.backgroundColor = '#2c3e50';
+            }
+        });
+    </script>
+</body>
+</html>
